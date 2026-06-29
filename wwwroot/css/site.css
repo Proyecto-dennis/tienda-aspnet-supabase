@@ -1,0 +1,9 @@
+html { font-size: 15px; min-height: 100%; }
+body { min-height: 100vh; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); }
+.card, .table, .form-control, .btn { border-radius: 14px; }
+.card { border: 0; box-shadow: 0 10px 30px rgba(15, 23, 42, .08); }
+.btn-primary { background: #2563eb; border-color: #2563eb; }
+.btn-warning { font-weight: 600; }
+.navbar-brand { letter-spacing: .3px; }
+.hero { background: linear-gradient(135deg, #111827, #1d4ed8); color: white; border-radius: 24px; padding: 48px; box-shadow: 0 20px 40px rgba(29, 78, 216, .25); }
+.footer { background: white; }

@@ -1,0 +1,189 @@
+@{
+    ViewData["Title"] = "Reporte de Ganancias";
+    var totalPedidos = ViewBag.TotalPedidos ?? 0;
+    var totalGanancias = ViewBag.TotalGanancias ?? 0;
+    var pedidosPendientes = ViewBag.PedidosPendientes ?? 0;
+    var pedidosEntregados = ViewBag.PedidosEntregados ?? 0;
+    var pedidosCancelados = ViewBag.PedidosCancelados ?? 0;
+    var productosMasVendidos = ViewBag.ProductosMasVendidos as List<dynamic> ?? new List<dynamic>();
+    var categoriasMasVendidas = ViewBag.CategoriasMasVendidas as List<dynamic> ?? new List<dynamic>();
+    var gananciasPorMes = ViewBag.GananciasPorMes as List<dynamic> ?? new List<dynamic>();
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">📊 Reporte de Ganancias</h2>
+
+    <!-- Tarjetas de resumen -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary">
+                <div class="card-body">
+                    <h5 class="card-title">Total Pedidos</h5>
+                    <h2>@totalPedidos</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success">
+                <div class="card-body">
+                    <h5 class="card-title">Ganancias Totales</h5>
+                    <h2>@totalGanancias.ToString("C")</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning">
+                <div class="card-body">
+                    <h5 class="card-title">Pedidos Pendientes</h5>
+                    <h2>@pedidosPendientes</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-danger">
+                <div class="card-body">
+                    <h5 class="card-title">Pedidos Cancelados</h5>
+                    <h2>@pedidosCancelados</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Productos más vendidos -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5>🏆 Productos Más Vendidos</h5>
+                </div>
+                <div class="card-body">
+                    @if (productosMasVendidos.Any())
+                    {
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Ganancia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in productosMasVendidos)
+                                {
+                                    <tr>
+                                        <td>@item.Nombre</td>
+                                        <td>@item.TotalVendido</td>
+                                        <td>@item.TotalGanancia.ToString("C")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No hay ventas registradas.</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Categorías más vendidas -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5>📂 Categorías Más Vendidas</h5>
+                </div>
+                <div class="card-body">
+                    @if (categoriasMasVendidas.Any())
+                    {
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Categoría</th>
+                                    <th>Cantidad</th>
+                                    <th>Ganancia</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in categoriasMasVendidas)
+                                {
+                                    <tr>
+                                        <td>@item.Categoria</td>
+                                        <td>@item.TotalVendido</td>
+                                        <td>@item.TotalGanancia.ToString("C")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No hay ventas registradas.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ganancias por mes -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5>📈 Ganancias por Mes</h5>
+                </div>
+                <div class="card-body">
+                    @if (gananciasPorMes.Any())
+                    {
+                        <div style="overflow-x: auto;">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Mes</th>
+                                        <th>Ganancia</th>
+                                        <th>Progreso</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        var maxGanancia = gananciasPorMes.Max(g => g.Total);
+                                    }
+                                    @foreach (var item in gananciasPorMes)
+                                    {
+                                        var porcentaje = maxGanancia > 0 ? (item.Total / maxGanancia * 100) : 0;
+                                        <tr>
+                                            <td>@($"{item.Mes}/{item.Año}")</td>
+                                            <td>@item.Total.ToString("C")</td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar bg-success"
+                                                         role="progressbar"
+                                                         style="width: @porcentaje%;"
+                                                         aria-valuenow="@porcentaje"
+                                                         aria-valuemin="0"
+                                                         aria-valuemax="100">
+                                                        @porcentaje.ToString("F0")%
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No hay ventas registradas.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-house"></i> Volver al Inicio
+        </a>
+    </div>
+</div>
