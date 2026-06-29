@@ -61,7 +61,8 @@ namespace LOGIN.Controllers
                 {
                     UsuarioId = int.Parse(usuarioId),
                     ProductoId = id,
-                    Cantidad = 1
+                    Cantidad = 1,
+                    FechaAgregado = DateTime.UtcNow
                 };
                 _context.CarritoItems.Add(carritoItem);
             }
@@ -124,7 +125,7 @@ namespace LOGIN.Controllers
                 UsuarioId = int.Parse(usuarioId),
                 Total = carrito.Sum(c => c.Cantidad * c.Producto.Precio),
                 Estado = 0,
-                FechaPedido = DateTime.Now
+                FechaPedido = DateTime.UtcNow
             };
 
             _context.Pedidos.Add(pedido);
