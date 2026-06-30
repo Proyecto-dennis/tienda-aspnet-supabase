@@ -46,7 +46,7 @@ namespace LOGIN.Data
                 entity.Property(e => e.Marca).HasMaxLength(100);
                 entity.Property(e => e.ModeloAuto).HasMaxLength(100);
                 entity.Property(e => e.FechaRegistro)
-                     .HasColumnType("timestamp without time zone")
+                     .HasColumnType("timestamp with time zone")
                      .HasDefaultValueSql("CURRENT_TIMESTAMP");
             });
 
@@ -57,7 +57,7 @@ namespace LOGIN.Data
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Cantidad).IsRequired();
                 entity.Property(e => e.FechaAgregado)
-                     .HasColumnType("timestamp without time zone")
+                     .HasColumnType("timestamp with time zone")
                      .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                 entity.HasOne(e => e.Usuario)
@@ -82,7 +82,7 @@ namespace LOGIN.Data
                 entity.Property(e => e.MetodoPago).HasMaxLength(50);
                 entity.Property(e => e.NumeroReferencia).HasMaxLength(20);
                 entity.Property(e => e.FechaPedido)
-                       .HasColumnType("timestamp without time zone")
+                       .HasColumnType("timestamp with time zone")
                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                 entity.HasOne(e => e.Usuario)
