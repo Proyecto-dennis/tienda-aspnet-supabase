@@ -19,7 +19,7 @@ namespace LOGIN.Models
         [Range(1, int.MaxValue)]
         public int Cantidad { get; set; }
 
-        public DateTime FechaAgregado { get; set; } = DateTime.Now;
+        public DateTime FechaAgregado { get; set; } = DateTime.UtcNow;
 
         [ForeignKey("UsuarioId")]
         public virtual Usuario? Usuario { get; set; }

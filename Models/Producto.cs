@@ -38,6 +38,6 @@ namespace LOGIN.Models
         [Display(Name = "Modelo compatible")]
         public string? ModeloAuto { get; set; }
 
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
     }
 }

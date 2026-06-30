@@ -45,7 +45,9 @@ namespace LOGIN.Data
                 entity.Property(e => e.Categoria).HasMaxLength(100);
                 entity.Property(e => e.Marca).HasMaxLength(100);
                 entity.Property(e => e.ModeloAuto).HasMaxLength(100);
-                entity.Property(e => e.FechaRegistro).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.FechaRegistro)
+                     .HasColumnType("timestamp without time zone")
+                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
             });
 
             // Configuración de CarritoItems
@@ -54,7 +56,9 @@ namespace LOGIN.Data
                 entity.ToTable("CarritoItems");
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Cantidad).IsRequired();
-                entity.Property(e => e.FechaAgregado).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.FechaAgregado)
+                     .HasColumnType("timestamp without time zone")
+                     .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                 entity.HasOne(e => e.Usuario)
                     .WithMany()
@@ -77,7 +81,9 @@ namespace LOGIN.Data
                 entity.Property(e => e.DireccionEnvio).HasMaxLength(200);
                 entity.Property(e => e.MetodoPago).HasMaxLength(50);
                 entity.Property(e => e.NumeroReferencia).HasMaxLength(20);
-                entity.Property(e => e.FechaPedido).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                entity.Property(e => e.FechaPedido)
+                       .HasColumnType("timestamp without time zone")
+                       .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                 entity.HasOne(e => e.Usuario)
                     .WithMany()

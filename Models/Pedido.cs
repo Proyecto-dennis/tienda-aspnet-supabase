@@ -12,7 +12,7 @@ namespace LOGIN.Models
         [Required]
         public int UsuarioId { get; set; }
 
-        public DateTime FechaPedido { get; set; } = DateTime.Now;
+        public DateTime FechaPedido { get; set; } = DateTime.UtcNow;
 
         [Required]
         public decimal Total { get; set; }
