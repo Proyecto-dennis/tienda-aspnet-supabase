@@ -1,8 +1,8 @@
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-
 using Microsoft.EntityFrameworkCore;
 using LOGIN.Data;
 using LOGIN.Models;
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
