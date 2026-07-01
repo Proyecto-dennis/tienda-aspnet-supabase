@@ -38,6 +38,9 @@ namespace LOGIN.Models
         [Display(Name = "Modelo compatible")]
         public string? ModeloAuto { get; set; }
 
+        //NUEVO: Imagenes
+        [Display(Name = "Imagen")]
+        public string? ImagenUrl { get; set; }
         public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
     }
 }
