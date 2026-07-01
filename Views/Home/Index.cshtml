@@ -2,20 +2,117 @@
     ViewData["Title"] = "Inicio";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card text-center">
-                <div class="card-header bg-info text-white">
-                    <h3>Bienvenido</h3>
-                </div>
-                <div class="card-body">
-                    <h4>¡Hola, @ViewBag.NombreUsuario!</h4>
-                    <p>Has iniciado sesión correctamente.</p>
-                    <hr />
-                    <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Cerrar Sesión</a>
-                </div>
+<section class="pp-hero">
+    <div class="pp-hero-overlay">
+        <div class="container">
+            <div class="pp-hero-content">
+                <h1>PERFORMANCE <span>PARTS</span></h1>
+                <p class="pp-author">by Dennis</p>
+                <h2>Calidad que mueve tu vehículo</h2>
+                <p>Repuestos automotrices con garantía, buenos precios y atención personalizada.</p>
+
+                <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red">
+                    Comprar ahora <i class="bi bi-arrow-right"></i>
+                </a>
             </div>
         </div>
     </div>
-</div>
+</section>
+
+<section class="container pp-benefits">
+    <div class="pp-benefit">
+        <i class="bi bi-shield-check"></i>
+        <div>
+            <strong>Garantía asegurada</strong>
+            <small>Productos de calidad</small>
+        </div>
+    </div>
+
+    <div class="pp-benefit">
+        <i class="bi bi-truck"></i>
+        <div>
+            <strong>Envíos a todo el país</strong>
+            <small>Rápidos y seguros</small>
+        </div>
+    </div>
+
+    <div class="pp-benefit">
+        <i class="bi bi-tags"></i>
+        <div>
+            <strong>Precios competitivos</strong>
+            <small>Ofertas especiales</small>
+        </div>
+    </div>
+
+    <div class="pp-benefit">
+        <i class="bi bi-headset"></i>
+        <div>
+            <strong>Atención al cliente</strong>
+            <small>Soporte personalizado</small>
+        </div>
+    </div>
+</section>
+
+<section class="container mt-5">
+    <div class="pp-section-title">
+        <h2>Categorías principales</h2>
+        <p>Encuentra repuestos según el área de tu vehículo</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Filtros" class="pp-category">
+                <i class="bi bi-funnel"></i>
+                <span>Filtros</span>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Frenos" class="pp-category">
+                <i class="bi bi-disc"></i>
+                <span>Frenos</span>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Suspensión" class="pp-category">
+                <i class="bi bi-wrench-adjustable"></i>
+                <span>Suspensión</span>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Motor" class="pp-category">
+                <i class="bi bi-gear-wide-connected"></i>
+                <span>Motor</span>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Lubricantes" class="pp-category">
+                <i class="bi bi-droplet-half"></i>
+                <span>Lubricantes</span>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Eléctrico" class="pp-category">
+                <i class="bi bi-battery-charging"></i>
+                <span>Eléctricos</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="container mt-5 mb-5">
+    <div class="pp-section-title">
+        <h2>Productos destacados</h2>
+        <p>Los repuestos más buscados por nuestros clientes</p>
+    </div>
+
+    <div class="text-center">
+        <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-dark">
+            Ver tienda completa
+        </a>
+    </div>
+</section>
