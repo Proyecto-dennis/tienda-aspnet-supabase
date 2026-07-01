@@ -571,3 +571,25 @@ body {
     border-radius: 50%;
     background-color: #e30613;
 }
+/* =======================
+   MARCAS DESTACADAS
+======================= */
+
+.pp-brand-card {
+    background: #111;
+    color: white;
+    border-radius: 18px;
+    padding: 28px 12px;
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    border-bottom: 4px solid #e30613;
+    transition: .3s;
+}
+
+    .pp-brand-card:hover {
+        transform: translateY(-8px);
+        background: #e30613;
+        box-shadow: 0 20px 45px rgba(227,6,19,.35);
+    }
