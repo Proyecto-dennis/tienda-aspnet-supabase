@@ -100,13 +100,12 @@ namespace LOGIN.Controllers
         }
 
         // Confirmar pedido
+        // Ir al formulario de pago
         public async Task<IActionResult> ConfirmarPedido()
         {
             var usuarioId = HttpContext.Session.GetString("UsuarioId");
             if (string.IsNullOrEmpty(usuarioId))
-            {
                 return RedirectToAction("Login", "Account");
-            }
 
             var carrito = await _context.CarritoItems
                 .Include(c => c.Producto)
@@ -119,21 +118,68 @@ namespace LOGIN.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Crear el pedido
+            ViewBag.Total = carrito.Sum(c => c.Cantidad * c.Producto.Precio);
+            return View("Pago");
+        }
+
+        // Mostrar formulario de pago
+        [HttpGet]
+        public async Task<IActionResult> Pago()
+        {
+            var usuarioId = HttpContext.Session.GetString("UsuarioId");
+            if (string.IsNullOrEmpty(usuarioId))
+                return RedirectToAction("Login", "Account");
+
+            var carrito = await _context.CarritoItems
+                .Include(c => c.Producto)
+                .Where(c => c.UsuarioId == int.Parse(usuarioId))
+                .ToListAsync();
+
+            ViewBag.Total = carrito.Sum(c => c.Cantidad * c.Producto.Precio);
+            return View();
+        }
+
+        // Realizar compra simulada
+        [HttpPost]
+        public async Task<IActionResult> RealizarCompra()
+        {
+            var usuarioId = HttpContext.Session.GetString("UsuarioId");
+            if (string.IsNullOrEmpty(usuarioId))
+                return RedirectToAction("Login", "Account");
+
+            var carrito = await _context.CarritoItems
+                .Include(c => c.Producto)
+                .Where(c => c.UsuarioId == int.Parse(usuarioId))
+                .ToListAsync();
+
+            if (!carrito.Any())
+            {
+                TempData["Error"] = "El carrito está vacío";
+                return RedirectToAction("Index");
+            }
+
+
             var pedido = new Pedido
             {
                 UsuarioId = int.Parse(usuarioId),
                 Total = carrito.Sum(c => c.Cantidad * c.Producto.Precio),
                 Estado = 0,
-                FechaPedido = DateTime.UtcNow
+                FechaPedido = DateTime.UtcNow,
+                MetodoPago = "Visa"
             };
 
             _context.Pedidos.Add(pedido);
             await _context.SaveChangesAsync();
 
-            // Crear los detalles del pedido
+
             foreach (var item in carrito)
             {
+                if (item.Producto == null || item.Producto.Cantidad < item.Cantidad)
+                {
+                    TempData["Error"] = $"No hay stock suficiente para {item.Producto?.Nombre}";
+                    return RedirectToAction("Index");
+                }
+
                 var detalle = new PedidoDetalle
                 {
                     PedidoId = pedido.Id,
@@ -141,18 +187,19 @@ namespace LOGIN.Controllers
                     Cantidad = item.Cantidad,
                     PrecioUnitario = item.Producto.Precio
                 };
+
                 _context.PedidoDetalles.Add(detalle);
 
-                // Actualizar stock
+
                 item.Producto.Cantidad -= item.Cantidad;
                 _context.Productos.Update(item.Producto);
             }
 
-            // Vaciar carrito
+
             _context.CarritoItems.RemoveRange(carrito);
             await _context.SaveChangesAsync();
 
-            TempData["Mensaje"] = "¡Pedido confirmado con éxito!";
+            TempData["Mensaje"] = "¡Compra realizada correctamente!";
             return RedirectToAction("MisPedidos", "Pedidos");
         }
     }

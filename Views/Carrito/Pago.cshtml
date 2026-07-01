@@ -1,0 +1,73 @@
+@{
+    ViewData["Title"] = "Pago";
+}
+
+<div class="card shadow p-4">
+    <h2 class="mb-4">Método de pago</h2>
+
+    <h5 class="text-primary">Pago con Visa</h5>
+    <p class="text-muted">Este pago es simulado para el proyecto.</p>
+
+    <form asp-controller="Carrito" asp-action="RealizarCompra" method="post">
+        <div class="mb-3">
+            <label class="form-label">Número de tarjeta</label>
+            <input type="text" class="form-control" placeholder="0000 0000 0000 0000" required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Fecha de expiración</label>
+                <input type="text" class="form-control" placeholder="MM/AA" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Código de seguridad</label>
+                <input type="password" class="form-control" placeholder="CVV" required>
+            </div>
+        </div>
+
+        <hr>
+
+        <h5>Información de facturación</h5>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label">Apellido</label>
+                <input type="text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Localidad</label>
+            <input type="text" class="form-control" required>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Código postal</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Teléfono</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label">Departamento</label>
+                <input type="text" class="form-control" required>
+            </div>
+        </div>
+
+        <div class="alert alert-info">
+            Total a pagar: <strong>Bs. @ViewBag.Total</strong>
+        </div>
+
+        <button type="submit" class="btn btn-success">
+            Realizar compra
+        </button>
+
+        <a asp-action="Index" class="btn btn-secondary">Volver al carrito</a>
+    </form>
+</div>
