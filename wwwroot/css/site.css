@@ -12,14 +12,14 @@ body {
 .hero { background: linear-gradient(135deg, #111827, #1d4ed8); color: white; border-radius: 24px; padding: 48px; box-shadow: 0 20px 40px rgba(29, 78, 216, .25); }
 .footer { background: white; }
 .pp-hero {
-    min-height: 520px;
+    min-height: 620px;
     background: url('/images/banner-performance.png') center/cover no-repeat;
     border-radius: 0 0 28px 28px;
     overflow: hidden;
 }
 
 .pp-hero-overlay {
-    min-height: 520px;
+    min-height: 620px;
     background: linear-gradient(90deg, rgba(0,0,0,.92), rgba(0,0,0,.55), rgba(0,0,0,.15));
     display: flex;
     align-items: center;
