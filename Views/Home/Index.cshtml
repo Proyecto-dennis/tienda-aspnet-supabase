@@ -2,21 +2,70 @@
     ViewData["Title"] = "Inicio";
 }
 
-<section class="pp-hero">
-    <div class="pp-hero-overlay">
-        <div class="container">
-            <div class="pp-hero-content">
-                <h1>PERFORMANCE <span>PARTS</span></h1>
-                <p class="pp-author">by Dennis</p>
-                <h2>Calidad que mueve tu vehículo</h2>
-                <p>Repuestos automotrices con garantía, buenos precios y atención personalizada.</p>
+<section id="ppCarousel" class="carousel slide pp-carousel" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#ppCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#ppCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#ppCarousel" data-bs-slide-to="2"></button>
+    </div>
 
-                <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red">
-                    Comprar ahora <i class="bi bi-arrow-right"></i>
-                </a>
+    <div class="carousel-inner">
+        <div class="carousel-item active pp-slide pp-slide-1">
+            <div class="pp-hero-overlay">
+                <div class="container">
+                    <div class="pp-hero-content">
+                        <h1>PERFORMANCE <span>PARTS</span></h1>
+                        <p class="pp-author">by Dennis</p>
+                        <h2>Calidad que mueve tu vehículo</h2>
+                        <p>Repuestos automotrices con garantía, buenos precios y atención personalizada.</p>
+                        <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red">
+                            Comprar ahora <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item pp-slide pp-slide-2">
+            <div class="pp-hero-overlay">
+                <div class="container">
+                    <div class="pp-hero-content">
+                        <h1>OFERTAS <span>PREMIUM</span></h1>
+                        <p class="pp-author">hasta 40% OFF</p>
+                        <h2>Repuestos seleccionados</h2>
+                        <p>Encuentra filtros, frenos, baterías y lubricantes para tu vehículo.</p>
+                        <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red">
+                            Ver ofertas <i class="bi bi-tags"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-item pp-slide pp-slide-3">
+            <div class="pp-hero-overlay">
+                <div class="container">
+                    <div class="pp-hero-content">
+                        <h1>ENVÍOS <span>SEGUROS</span></h1>
+                        <p class="pp-author">a todo el país</p>
+                        <h2>Compra fácil y rápido</h2>
+                        <p>Tu pedido listo con seguimiento, garantía y atención personalizada.</p>
+                        <a asp-controller="Carrito" asp-action="Index" class="btn pp-btn-red">
+                            Ver carrito <i class="bi bi-cart3"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#ppCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+
+    <button class="carousel-control-next" type="button" data-bs-target="#ppCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
 </section>
 
 <section class="container pp-benefits">

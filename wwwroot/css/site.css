@@ -539,3 +539,35 @@ body {
         color: #666;
         margin-left: 5px;
     }
+.pp-carousel {
+    border-radius: 0 0 28px 28px;
+    overflow: hidden;
+}
+
+.pp-slide {
+    min-height: 600px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.pp-slide-1 {
+    background-image: url('/images/banner-performance.png');
+}
+
+.pp-slide-2 {
+    background-image: linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.35)), url('/images/productos/frenos.png');
+    background-color: #111;
+}
+
+.pp-slide-3 {
+    background-image: linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.35)), url('/images/productos/bateria.png');
+    background-color: #111;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #e30613;
+}
