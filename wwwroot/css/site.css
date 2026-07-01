@@ -438,3 +438,104 @@ body {
     color: #e30613;
     margin-bottom: 18px;
 }
+/* ==========================================
+   TARJETAS PREMIUM PERFORMANCE PARTS
+========================================== */
+
+.pp-shop-card {
+    position: relative;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,.12);
+    transition: .35s;
+    height: 100%;
+}
+
+    .pp-shop-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 45px rgba(0,0,0,.22);
+    }
+
+.pp-shop-fav {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    color: #999;
+    box-shadow: 0 5px 15px rgba(0,0,0,.18);
+    transition: .3s;
+    z-index: 10;
+}
+
+    .pp-shop-fav:hover {
+        background: #e30613;
+        color: white;
+    }
+
+.pp-shop-img {
+    background: #f7f7f7;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .pp-shop-img img {
+        max-height: 210px;
+        max-width: 90%;
+        transition: .35s;
+    }
+
+.pp-shop-card:hover .pp-shop-img img {
+    transform: scale(1.08);
+}
+
+.pp-shop-body {
+    padding: 22px;
+}
+
+.pp-shop-category {
+    background: #111;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: .8rem;
+    font-weight: 700;
+}
+
+.pp-shop-brand {
+    color: #e30613;
+    font-weight: 700;
+}
+
+.pp-shop-body h5 {
+    font-weight: 800;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.pp-shop-desc {
+    color: #666;
+    min-height: 55px;
+}
+
+.pp-shop-price {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #e30613;
+    margin-bottom: 12px;
+}
+
+.pp-stars {
+    color: #ffb400;
+}
+
+    .pp-stars small {
+        color: #666;
+        margin-left: 5px;
+    }

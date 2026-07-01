@@ -1,23 +1,22 @@
 @model IEnumerable<LOGIN.Models.Producto>
 
 @{
-    ViewData["Title"] = "Tienda de Repuestos";
+    ViewData["Title"] = "Tienda";
 }
 
-<div class="container mt-4">
-    <h2 class="text-center mb-4">🚗 Tienda de Repuestos Automotrices</h2>
+<div class="container mt-5">
+    <div class="pp-section-title">
+        <h2>Tienda PERFORMANCE PARTS</h2>
+        <p>Repuestos automotrices seleccionados para tu vehículo</p>
+    </div>
 
-    <div class="row mb-4">
-        <div class="col-md-6 mx-auto">
-            <div class="d-flex justify-content-center gap-2 flex-wrap">
-                <a asp-action="Index" class="btn btn-outline-primary">Todos</a>
-                <a asp-action="Categoria" asp-route-categoria="Motor" class="btn btn-outline-primary">Motor</a>
-                <a asp-action="Categoria" asp-route-categoria="Frenos" class="btn btn-outline-primary">Frenos</a>
-                <a asp-action="Categoria" asp-route-categoria="Suspensión" class="btn btn-outline-primary">Suspensión</a>
-                <a asp-action="Categoria" asp-route-categoria="Transmisión" class="btn btn-outline-primary">Transmisión</a>
-                <a asp-action="Categoria" asp-route-categoria="Eléctrico" class="btn btn-outline-primary">Eléctrico</a>
-            </div>
-        </div>
+    <div class="d-flex justify-content-center gap-2 flex-wrap mb-5">
+        <a asp-action="Index" class="btn pp-btn-dark">Todos</a>
+        <a asp-action="Categoria" asp-route-categoria="Motor" class="btn btn-outline-danger">Motor</a>
+        <a asp-action="Categoria" asp-route-categoria="Frenos" class="btn btn-outline-danger">Frenos</a>
+        <a asp-action="Categoria" asp-route-categoria="Suspensión" class="btn btn-outline-danger">Suspensión</a>
+        <a asp-action="Categoria" asp-route-categoria="Transmisión" class="btn btn-outline-danger">Transmisión</a>
+        <a asp-action="Categoria" asp-route-categoria="Eléctrico" class="btn btn-outline-danger">Eléctrico</a>
     </div>
 
     @if (!Model.Any())
@@ -28,70 +27,77 @@
     }
     else
     {
-        <div class="row">
+        <div class="row g-4">
             @foreach (var producto in Model)
             {
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-header bg-primary text-white">
-                            <span class="badge bg-light text-dark">@producto.Categoria</span>
-                            <span class="badge bg-secondary float-end">@producto.Marca</span>
+                var imagenProducto = producto.Categoria switch
+                {
+                    "Filtros" => "/images/productos/filtro.png",
+                    "Frenos" => "/images/productos/frenos.png",
+                    "Suspensión" => "/images/productos/amortiguadores.png",
+                    "Lubricantes" => "/images/productos/aceite.png",
+                    "Eléctrico" => "/images/productos/bateria.png",
+                    "Motor" => "/images/productos/llanta.png",
+                    _ => "/images/productos/filtro.png"
+                };
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="pp-shop-card">
+                        <button class="pp-shop-fav" type="button">
+                            <i class="bi bi-heart"></i>
+                        </button>
+
+                        <div class="pp-shop-img">
+                            <img src="@imagenProducto" alt="@producto.Nombre" />
                         </div>
 
-                        <div class="card-body">
-                            @{
-                                var imagenProducto = producto.Categoria switch
-                                {
-                                    "Filtros" => "/images/productos/filtro.png",
-                                    "Frenos" => "/images/productos/frenos.png",
-                                    "Suspensión" => "/images/productos/amortiguadores.png",
-                                    "Lubricantes" => "/images/productos/aceite.png",
-                                    "Eléctrico" => "/images/productos/bateria.png",
-                                    "Motor" => "/images/productos/llanta.png",
-                                    _ => "/images/productos/filtro.png"
-                                };
-                            }
+                        <div class="pp-shop-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="pp-shop-category">@producto.Categoria</span>
+                                <span class="pp-shop-brand">@producto.Marca</span>
+                            </div>
 
-                            <img src="@imagenProducto"
-                                 class="img-fluid mb-3"
-                                 style="height:180px; object-fit:contain; width:100%;" />
+                            <h5>@producto.Nombre</h5>
+                            <p class="pp-shop-desc">@producto.Descripcion</p>
 
-                            <h5 class="card-title">@producto.Nombre</h5>
-                            <p class="card-text text-muted">@producto.Descripcion</p>
+                            <div class="pp-stars mb-2">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <small>(4.5)</small>
+                            </div>
 
-                            <p class="card-text">
+                            <p class="mb-2">
                                 <strong>Modelo:</strong> @producto.ModeloAuto
                             </p>
 
-                            <p class="card-text">
-                                <strong>Precio:</strong>
-                                <span class="text-success fs-5">@producto.Precio.ToString("C")</span>
-                            </p>
+                            <div class="pp-shop-price">
+                                @producto.Precio.ToString("C")
+                            </div>
 
-                            <p class="card-text">
-                                <strong>Stock:</strong>
+                            <div class="mb-3">
                                 @if (producto.Cantidad > 0)
                                 {
-                                    <span class="badge bg-success fs-6">
+                                    <span class="badge bg-success">
                                         @producto.Cantidad disponibles
                                     </span>
                                 }
                                 else
                                 {
-                                    <span class="badge bg-danger fs-6">
+                                    <span class="badge bg-danger">
                                         AGOTADO
                                     </span>
                                 }
-                            </p>
-                        </div>
+                            </div>
 
-                        <div class="card-footer bg-transparent">
                             @if (producto.Cantidad > 0)
                             {
                                 <a asp-controller="Carrito"
                                    asp-action="Agregar"
                                    asp-route-id="@producto.Id"
-                                   class="btn btn-primary w-100">
+                                   class="btn pp-btn-red w-100">
                                     <i class="bi bi-cart-plus-fill"></i>
                                     Agregar al carrito
                                 </a>
@@ -110,7 +116,7 @@
         </div>
     }
 
-    <div class="text-center mt-4">
+    <div class="text-center mt-5">
         <a asp-controller="Carrito" asp-action="Index" class="btn btn-success btn-lg">
             <i class="bi bi-cart"></i> Ver Carrito
         </a>
