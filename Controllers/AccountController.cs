@@ -37,6 +37,16 @@ namespace LOGIN.Controllers
                     HttpContext.Session.SetString("UsuarioId", usuario.Id.ToString());
                     HttpContext.Session.SetString("UsuarioNombre", usuario.Nombre ?? "");
                     HttpContext.Session.SetString("UsuarioEmail", usuario.Email ?? "");
+
+                    if (usuario.Email == "dennis@gmail.com")
+                    {
+                        HttpContext.Session.SetString("EsAdmin", "true");
+                    }
+                    else
+                    {
+                        HttpContext.Session.SetString("EsAdmin", "false");
+                    }
+
                     return RedirectToAction("Index", "Home");
                 }
                 else

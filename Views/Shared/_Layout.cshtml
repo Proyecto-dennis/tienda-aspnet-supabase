@@ -19,7 +19,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse">
-                    @{ var usuarioNombre = Context.Session.GetString("UsuarioNombre"); }
+                    @{
+                        var usuarioNombre = Context.Session.GetString("UsuarioNombre");
+                        var esAdmin = Context.Session.GetString("EsAdmin") == "true";
+                     }
                     @if (!string.IsNullOrEmpty(usuarioNombre))
                     {
                         <ul class="navbar-nav me-auto">
@@ -27,8 +30,11 @@
                             <li class="nav-item"><a class="nav-link" asp-controller="Tienda" asp-action="Index"><i class="bi bi-shop me-1"></i>Tienda</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Carrito" asp-action="Index"><i class="bi bi-cart me-1"></i>Carrito</a></li>
                             <li class="nav-item"><a class="nav-link" asp-controller="Pedidos" asp-action="MisPedidos"><i class="bi bi-box me-1"></i>Mis pedidos</a></li>
-                            <li class="nav-item"><a class="nav-link" asp-controller="Productos" asp-action="Index"><i class="bi bi-gear me-1"></i>Admin productos</a></li>
-                            <li class="nav-item"><a class="nav-link" asp-controller="Reportes" asp-action="Ganancias"><i class="bi bi-graph-up me-1"></i>Reportes</a></li>
+                            @if (esAdmin)
+                            {
+                                <li class="nav-item"><a class="nav-link" asp-controller="Productos" asp-action="Index"><i class="bi bi-gear me-1"></i>Admin productos</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-controller="Reportes" asp-action="Ganancias"><i class="bi bi-graph-up me-1"></i>Reportes</a></li>
+                            }
                         </ul>
                         <div class="d-flex align-items-center gap-3 text-white">
                             <span class="small"><i class="bi bi-person-circle me-1"></i>@usuarioNombre</span>
