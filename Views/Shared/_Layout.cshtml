@@ -30,8 +30,15 @@
                 </a>
 
                 <form class="pp-search d-none d-lg-flex" asp-controller="Tienda" asp-action="Index" method="get">
-                    <input type="text" name="buscar" placeholder="Buscar repuestos, marcas, categorías..." />
-                    <button type="submit"><i class="bi bi-search"></i></button>
+                    <input id="voiceSearchInput" type="text" name="buscar" placeholder="Buscar repuestos, marcas, categorías..." />
+
+                    <button type="button" id="voiceSearchBtn" title="Buscar por voz">
+                        <i class="bi bi-mic-fill"></i>
+                    </button>
+
+                    <button type="submit" title="Buscar">
+                        <i class="bi bi-search"></i>
+                    </button>
                 </form>
 
                 <div class="pp-actions">
@@ -127,6 +134,45 @@
                 navigator.serviceWorker.register("/service-worker.js")
                     .then(() => console.log("PWA activada"))
                     .catch(error => console.log("Error PWA:", error));
+            }
+    </script>
+    <script>
+            const voiceBtn = document.getElementById("voiceSearchBtn");
+            const voiceInput = document.getElementById("voiceSearchInput");
+
+            if (voiceBtn && voiceInput) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+                if (SpeechRecognition) {
+                    const recognition = new SpeechRecognition();
+                    recognition.lang = "es-ES";
+                    recognition.continuous = false;
+                    recognition.interimResults = false;
+
+                    voiceBtn.addEventListener("click", () => {
+                        recognition.start();
+                        voiceBtn.classList.add("listening");
+                    });
+
+                    recognition.onresult = function (event) {
+                        const texto = event.results[0][0].transcript;
+                        voiceInput.value = texto;
+                        voiceBtn.classList.remove("listening");
+                    };
+
+                    recognition.onerror = function () {
+                        voiceBtn.classList.remove("listening");
+                        alert("No se pudo reconocer la voz. Intenta otra vez.");
+                    };
+
+                    recognition.onend = function () {
+                        voiceBtn.classList.remove("listening");
+                    };
+                } else {
+                    voiceBtn.addEventListener("click", () => {
+                        alert("Tu navegador no soporta búsqueda por voz.");
+                    });
+                }
             }
     </script>
 </body>

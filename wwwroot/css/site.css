@@ -593,3 +593,21 @@ body {
         background: #e30613;
         box-shadow: 0 20px 45px rgba(227,6,19,.35);
     }
+.pp-search button.listening {
+    background: #22c55e !important;
+    animation: pulseMic 1s infinite;
+}
+
+@keyframes pulseMic {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
