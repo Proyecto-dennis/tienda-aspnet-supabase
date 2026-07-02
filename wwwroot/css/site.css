@@ -611,3 +611,22 @@ body {
         transform: scale(1);
     }
 }
+.pp-testimonial-card {
+    background: #111;
+    color: white;
+    border-radius: 22px;
+    padding: 30px;
+    height: 100%;
+    box-shadow: 0 15px 35px rgba(0,0,0,.18);
+    border-bottom: 4px solid #e30613;
+    transition: .3s;
+}
+
+    .pp-testimonial-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .pp-testimonial-card p {
+        color: #ddd;
+        font-style: italic;
+    }
