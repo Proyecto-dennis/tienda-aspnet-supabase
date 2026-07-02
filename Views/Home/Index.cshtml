@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<LOGIN.Models.Producto>
+
+@{
     ViewData["Title"] = "Inicio";
 }
 
@@ -62,16 +64,44 @@
     <button class="carousel-control-prev" type="button" data-bs-target="#ppCarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
     </button>
+
     <button class="carousel-control-next" type="button" data-bs-target="#ppCarousel" data-bs-slide="next">
         <span class="carousel-control-next-icon"></span>
     </button>
 </section>
 
 <section class="container pp-benefits">
-    <div class="pp-benefit"><i class="bi bi-shield-check"></i><div><strong>Garantía asegurada</strong><small>Productos de calidad</small></div></div>
-    <div class="pp-benefit"><i class="bi bi-truck"></i><div><strong>Envíos a todo el país</strong><small>Rápidos y seguros</small></div></div>
-    <div class="pp-benefit"><i class="bi bi-tags"></i><div><strong>Precios competitivos</strong><small>Ofertas especiales</small></div></div>
-    <div class="pp-benefit"><i class="bi bi-headset"></i><div><strong>Atención al cliente</strong><small>Soporte personalizado</small></div></div>
+    <div class="pp-benefit">
+        <i class="bi bi-shield-check"></i>
+        <div>
+            <strong>Garantía asegurada</strong>
+            <small>Productos de calidad</small>
+        </div>
+    </div>
+
+    <div class="pp-benefit">
+        <i class="bi bi-truck"></i>
+        <div>
+            <strong>Envíos a todo el país</strong>
+            <small>Rápidos y seguros</small>
+        </div>
+    </div>
+
+    <div class="pp-benefit">
+        <i class="bi bi-tags"></i>
+        <div>
+            <strong>Precios competitivos</strong>
+            <small>Ofertas especiales</small>
+        </div>
+    </div>
+
+    <div class="pp-benefit">
+        <i class="bi bi-headset"></i>
+        <div>
+            <strong>Atención al cliente</strong>
+            <small>Soporte personalizado</small>
+        </div>
+    </div>
 </section>
 
 <section class="container mt-5">
@@ -81,77 +111,128 @@
     </div>
 
     <div class="row g-4">
-        <div class="col-md-4 col-lg-2"><a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Filtros" class="pp-category"><img src="/images/productos/filtro.png" class="img-fluid" style="height:90px; object-fit:contain;"><span>Filtros</span></a></div>
-        <div class="col-md-4 col-lg-2"><a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Frenos" class="pp-category"><img src="/images/productos/frenos.png" class="img-fluid" style="height:90px; object-fit:contain;"><span>Frenos</span></a></div>
-        <div class="col-md-4 col-lg-2"><a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Suspensión" class="pp-category"><img src="/images/productos/amortiguadores.png" class="img-fluid" style="height:90px; object-fit:contain;"><span>Suspensión</span></a></div>
-        <div class="col-md-4 col-lg-2"><a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Motor" class="pp-category"><img src="/images/productos/llanta.png" class="img-fluid" style="height:90px; object-fit:contain;"><span>Motor</span></a></div>
-        <div class="col-md-4 col-lg-2"><a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Lubricantes" class="pp-category"><img src="/images/productos/aceite.png" class="img-fluid" style="height:90px; object-fit:contain;"><span>Lubricantes</span></a></div>
-        <div class="col-md-4 col-lg-2"><a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Eléctrico" class="pp-category"><img src="/images/productos/bateria.png" class="img-fluid" style="height:90px; object-fit:contain;"><span>Eléctricos</span></a></div>
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Filtros" class="pp-category">
+                <img src="/images/productos/filtro.png" class="img-fluid" style="height:90px; object-fit:contain;">
+                <span>Filtros</span>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Frenos" class="pp-category">
+                <img src="/images/productos/frenos.png" class="img-fluid" style="height:90px; object-fit:contain;">
+                <span>Frenos</span>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Suspensión" class="pp-category">
+                <img src="/images/productos/amortiguadores.png" class="img-fluid" style="height:90px; object-fit:contain;">
+                <span>Suspensión</span>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Motor" class="pp-category">
+                <img src="/images/productos/llanta.png" class="img-fluid" style="height:90px; object-fit:contain;">
+                <span>Motor</span>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Lubricantes" class="pp-category">
+                <img src="/images/productos/aceite.png" class="img-fluid" style="height:90px; object-fit:contain;">
+                <span>Lubricantes</span>
+            </a>
+        </div>
+
+        <div class="col-md-4 col-lg-2">
+            <a asp-controller="Tienda" asp-action="Categoria" asp-route-categoria="Eléctrico" class="pp-category">
+                <img src="/images/productos/bateria.png" class="img-fluid" style="height:90px; object-fit:contain;">
+                <span>Eléctricos</span>
+            </a>
+        </div>
     </div>
 </section>
 
 <section class="container mt-5">
     <div class="pp-section-title">
         <h2>Productos destacados</h2>
-        <p>Los repuestos más buscados por nuestros clientes</p>
+        <p>Productos agregados recientemente desde Supabase</p>
     </div>
 
-    <div class="row g-4">
-        <div class="col-md-6 col-lg-3">
-            <div class="pp-product-card">
-                <span class="pp-product-badge">Destacado</span>
-                <button class="pp-fav"><i class="bi bi-heart"></i></button>
-                <div class="text-center mb-3"><img src="/images/productos/filtro.png" class="img-fluid" style="height:170px; object-fit:contain;"></div>
-                <h5>Filtro de aceite Bosch</h5>
-                <p class="pp-product-brand">Bosch</p>
-                <div class="pp-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><small>(45)</small></div>
-                <div class="pp-product-price">Bs. 85</div>
-                <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red w-100">Ver producto</a>
-            </div>
-        </div>
+    @if (Model != null && Model.Any())
+    {
+        <div class="row g-4">
+            @foreach (var producto in Model)
+            {
+                var imagenProducto = producto.Categoria switch
+                {
+                    "Filtros" => "/images/productos/filtro.png",
+                    "Frenos" => "/images/productos/frenos.png",
+                    "Suspensión" => "/images/productos/amortiguadores.png",
+                    "Lubricantes" => "/images/productos/aceite.png",
+                    "Eléctrico" => "/images/productos/bateria.png",
+                    "Motor" => "/images/productos/llanta.png",
+                    _ => "/images/productos/filtro.png"
+                };
 
-        <div class="col-md-6 col-lg-3">
-            <div class="pp-product-card">
-                <span class="pp-product-badge">Más vendido</span>
-                <button class="pp-fav"><i class="bi bi-heart"></i></button>
-                <div class="text-center mb-3"><img src="/images/productos/frenos.png" class="img-fluid" style="height:170px; object-fit:contain;"></div>
-                <h5>Pastillas de freno</h5>
-                <p class="pp-product-brand">Brembo</p>
-                <div class="pp-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><small>(32)</small></div>
-                <div class="pp-product-price">Bs. 180</div>
-                <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red w-100">Ver producto</a>
-            </div>
-        </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="pp-product-card">
+                        <span class="pp-product-badge">Nuevo</span>
+                        <button class="pp-fav" type="button">
+                            <i class="bi bi-heart"></i>
+                        </button>
 
-        <div class="col-md-6 col-lg-3">
-            <div class="pp-product-card">
-                <span class="pp-product-badge">Nuevo</span>
-                <button class="pp-fav"><i class="bi bi-heart"></i></button>
-                <div class="text-center mb-3"><img src="/images/productos/amortiguadores.png" class="img-fluid" style="height:170px; object-fit:contain;"></div>
-                <h5>Amortiguador Monroe</h5>
-                <p class="pp-product-brand">Monroe</p>
-                <div class="pp-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><small>(27)</small></div>
-                <div class="pp-product-price">Bs. 350</div>
-                <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red w-100">Ver producto</a>
-            </div>
-        </div>
+                        <div class="text-center mb-3">
+                            <img src="@imagenProducto" class="img-fluid" style="height:170px; object-fit:contain;">
+                        </div>
 
-        <div class="col-md-6 col-lg-3">
-            <div class="pp-product-card">
-                <span class="pp-product-badge">Oferta</span>
-                <button class="pp-fav"><i class="bi bi-heart"></i></button>
-                <div class="text-center mb-3"><img src="/images/productos/bateria.png" class="img-fluid" style="height:170px; object-fit:contain;"></div>
-                <h5>Batería 75Ah</h5>
-                <p class="pp-product-brand">Willard</p>
-                <div class="pp-stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><small>(41)</small></div>
-                <div class="pp-product-price">Bs. 720</div>
-                <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red w-100">Ver producto</a>
-            </div>
+                        <h5>@producto.Nombre</h5>
+                        <p class="pp-product-brand">@producto.Marca</p>
+
+                        <div class="pp-stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                            <small>(4.5)</small>
+                        </div>
+
+                        <div class="pp-product-price">
+                            @producto.Precio.ToString("C")
+                        </div>
+
+                        @if (producto.Cantidad > 0)
+                        {
+                            <a asp-controller="Carrito" asp-action="Agregar" asp-route-id="@producto.Id" class="btn pp-btn-red w-100">
+                                <i class="bi bi-cart-plus-fill"></i>
+                                Agregar al carrito
+                            </a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-danger w-100" disabled>
+                                Producto agotado
+                            </button>
+                        }
+                    </div>
+                </div>
+            }
         </div>
-    </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">
+            Aún no hay productos destacados disponibles.
+        </div>
+    }
 
     <div class="text-center mt-4">
-        <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-dark">Ver tienda completa</a>
+        <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-dark">
+            Ver tienda completa
+        </a>
     </div>
 </section>
 
@@ -184,7 +265,10 @@
                 <img src="/images/productos/aceite.png" />
                 <h4>Aceite Premium</h4>
                 <p>Lubricante de alto rendimiento</p>
-                <div><span class="pp-old-price">Bs. 120</span><span class="pp-new-price">Bs. 89</span></div>
+                <div>
+                    <span class="pp-old-price">Bs. 120</span>
+                    <span class="pp-new-price">Bs. 89</span>
+                </div>
                 <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red w-100 mt-3">Comprar</a>
             </div>
         </div>
@@ -195,7 +279,10 @@
                 <img src="/images/productos/frenos.png" />
                 <h4>Pastillas de freno</h4>
                 <p>Seguridad y calidad garantizada</p>
-                <div><span class="pp-old-price">Bs. 210</span><span class="pp-new-price">Bs. 180</span></div>
+                <div>
+                    <span class="pp-old-price">Bs. 210</span>
+                    <span class="pp-new-price">Bs. 180</span>
+                </div>
                 <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red w-100 mt-3">Comprar</a>
             </div>
         </div>
@@ -206,7 +293,10 @@
                 <img src="/images/productos/bateria.png" />
                 <h4>Batería 75Ah</h4>
                 <p>Potencia confiable para tu vehículo</p>
-                <div><span class="pp-old-price">Bs. 900</span><span class="pp-new-price">Bs. 720</span></div>
+                <div>
+                    <span class="pp-old-price">Bs. 900</span>
+                    <span class="pp-new-price">Bs. 720</span>
+                </div>
                 <a asp-controller="Tienda" asp-action="Index" class="btn pp-btn-red w-100 mt-3">Comprar</a>
             </div>
         </div>

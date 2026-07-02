@@ -1,10 +1,20 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using LOGIN.Models;
+using LOGIN.Data;
+
 namespace LOGIN.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId")))
             {
@@ -12,7 +22,14 @@ namespace LOGIN.Controllers
             }
 
             ViewBag.NombreUsuario = HttpContext.Session.GetString("UsuarioNombre");
-            return View();
+
+            var productosDestacados = await _context.Productos
+                .Where(p => p.Cantidad > 0)
+                .OrderByDescending(p => p.FechaRegistro)
+                .Take(4)
+                .ToListAsync();
+
+            return View(productosDestacados);
         }
 
         public IActionResult Privacy()
@@ -21,12 +38,16 @@ namespace LOGIN.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+
             return View();
         }
 
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = System.Diagnostics.Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel
+            {
+                RequestId = System.Diagnostics.Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            });
         }
     }
 }
